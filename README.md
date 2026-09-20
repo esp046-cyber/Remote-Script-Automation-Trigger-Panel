@@ -1,6 +1,4 @@
-Here is the visually upgraded README. It preserves all of your technical documentation while integrating centered layouts, standard tech stack badges, and a designated placeholder space at the top for an animated GIF (a screen recording of your Face ID prompt in action will look perfect there).
 
-```markdown
 <div align="center">
   <!-- 
     NOTE TO DEVELOPER: 
