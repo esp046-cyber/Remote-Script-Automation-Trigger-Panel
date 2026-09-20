@@ -5,7 +5,7 @@ import { VitePWA } from 'vite-plugin-pwa'
 // STRICT REQUIREMENT: base must match the GitHub repository name exactly,
 // or all asset paths (JS/CSS/icons) will 404 on GitHub Pages.
 // If you rename the repo, update this value to match.
-const REPO_NAME = 'Remote-Script-Trigger-Panel'
+const REPO_NAME = 'Remote-Script-Automation-Trigger-Panel'
 
 export default defineConfig({
   base: `/${REPO_NAME}/`,
