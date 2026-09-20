@@ -5,7 +5,7 @@
     Replace this placeholder image link with a link to an animated .gif of your app in action!
     A screen recording of the Face ID prompt firing will make this repository stand out.
   -->
-  <img src="https://via.placeholder.com/800x400/1e293b/10b981?text=+Drop+an+animated+GIF+of+the+App+here!+" alt="App Interface Preview" width="100%" style="border-radius: 12px;" />
+<img src="preview.jpg" alt="App Interface Preview" width="100%" style="border-radius: 12px;" />
 
   <br />
   <h1>⚡ Remote Script & Automation Trigger Panel</h1>
