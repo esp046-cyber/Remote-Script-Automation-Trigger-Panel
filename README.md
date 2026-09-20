@@ -1,7 +1,7 @@
 
 <div align="center">
 
-<img src="preview.jpg" alt="App Interface Preview" width="100%" style="border-radius: 12px;" />
+<img src="public/IMG_5184.jpeg" alt="App Interface Preview" width="100%" style="border-radius: 12px;" />
 
   <br />
   <h1>⚡ Remote Script & Automation Trigger Panel</h1>
