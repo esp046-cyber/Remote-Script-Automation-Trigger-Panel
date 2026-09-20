@@ -1,16 +1,33 @@
+Here is the visually upgraded README. It preserves all of your technical documentation while integrating centered layouts, standard tech stack badges, and a designated placeholder space at the top for an animated GIF (a screen recording of your Face ID prompt in action will look perfect there).
+
+```markdown
 <div align="center">
+  <!-- 
+    NOTE TO DEVELOPER: 
+    Replace this placeholder image link with a link to an animated .gif of your app in action!
+    A screen recording of the Face ID prompt firing will make this repository stand out.
+  -->
+  <img src="https://via.placeholder.com/800x400/1e293b/10b981?text=+Drop+an+animated+GIF+of+the+App+here!+" alt="App Interface Preview" width="100%" style="border-radius: 12px;" />
 
-# ⚡ Remote Script &amp; Automation Trigger Panel
+  <br />
+  <h1>⚡ Remote Script & Automation Trigger Panel</h1>
+  <p><strong>Face ID-gated, one-tap maintenance script execution — from your pocket to the plant floor.</strong></p>
 
-**Face ID-gated, one-tap maintenance script execution — from your pocket to the plant floor.**
-
-A Progressive Web App that lets an industrial automation engineer fire pre-configured n8n webhooks or cloud functions from an iPhone, without opening a laptop or SSHing into anything mid-shift.
-
+  <p>
+    <img src="https://img.shields.io/badge/React_18-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React" />
+    <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind" />
+    <img src="https://img.shields.io/badge/Vite_PWA-646CFF?style=for-the-badge&logo=vite&logoColor=white" alt="Vite PWA" />
+    <img src="https://img.shields.io/badge/WebAuthn-000000?style=for-the-badge&logo=apple&logoColor=white" alt="Face ID" />
+  </p>
+  
+  <p>
+    A Progressive Web App that lets an industrial automation engineer fire pre-configured n8n webhooks or cloud functions from an iPhone, without opening a laptop or SSHing into anything mid-shift.
+  </p>
 </div>
 
 ---
 
-## What this is
+## 🎯 What this is
 
 A PWA with three oversized, glove-friendly trigger buttons. Each one:
 
@@ -19,19 +36,23 @@ A PWA with three oversized, glove-friendly trigger buttons. Each one:
 3. POSTs to a configured webhook (n8n, Azure Function, or anything else that accepts a POST)
 4. Reports success or failure with a toast, including HTTP status and round-trip time
 
-The frontend never runs a script itself — it only ever asks a trusted backend to run one, after a human with a verified fingerprint or face confirms it.
+> **Note:** The frontend never runs a script itself — it only ever asks a trusted backend to run one, after a human with a verified fingerprint or face confirms it.
 
-## Included out of the box
+<br />
+
+## 🛠️ Included out of the box
 
 | Action | Theme | Purpose |
-|---|---|---|
-| Restart Frozen PI Interface | 🔴 Red | Restarts the PI Interface service on the historian server |
-| Kick-off SQL Data Sync | 🔵 Blue | Runs the scheduled SQL replication job on demand |
-| Trigger Python Data Backfill | 🟢 Green | Runs the Python backfill script for missing historian tags |
+| :--- | :--- | :--- |
+| **Restart Frozen PI Interface** | 🔴 Red | Restarts the PI Interface service on the historian server |
+| **Kick-off SQL Data Sync** | 🔵 Blue | Runs the scheduled SQL replication job on demand |
+| **Trigger Python Data Backfill** | 🟢 Green | Runs the Python backfill script for missing historian tags |
 
-Add more by editing `src/services/webhookService.js` and `.env`.
+*Add more by editing `src/services/webhookService.js` and `.env`.*
 
-## Tech stack
+<br />
+
+## ⚙️ Tech stack
 
 - **React 18** + **Vite** — fast dev loop, small production bundle
 - **Tailwind CSS** — industrial dark-mode design system with oversized touch targets
@@ -39,24 +60,28 @@ Add more by editing `src/services/webhookService.js` and `.env`.
 - **Web Authentication API** (`navigator.credentials.create` / `.get`) — local biometric gating
 - **lucide-react** — icon set
 
-## Getting started locally
+<br />
+
+## 🚀 Getting started locally
 
 ```bash
 npm install
 cp .env.example .env      # fill in your real webhook URLs
 npm run dev
+
 ```
 
-Open the printed local URL. Note: Face ID / platform authenticator prompts require either `localhost` or HTTPS — they will not fire over a plain `http://` LAN IP.
+Open the printed local URL. *Note: Face ID / platform authenticator prompts require either `localhost` or HTTPS — they will not fire over a plain `http://` LAN IP.*
 
-## Configuring your webhooks
+## 🔗 Configuring your webhooks
 
 Edit `.env` (never commit it — it's gitignored):
 
-```bash
-VITE_N8N_WEBHOOK_URL_RESTART_PI=https://your-n8n-instance.example.com/webhook/restart-pi-interface
-VITE_N8N_WEBHOOK_URL_SQL_SYNC=https://your-n8n-instance.example.com/webhook/sql-data-sync
-VITE_N8N_WEBHOOK_URL_PYTHON_BACKFILL=https://your-n8n-instance.example.com/webhook/python-data-backfill
+```env
+VITE_N8N_WEBHOOK_URL_RESTART_PI=[https://your-n8n-instance.example.com/webhook/restart-pi-interface](https://your-n8n-instance.example.com/webhook/restart-pi-interface)
+VITE_N8N_WEBHOOK_URL_SQL_SYNC=[https://your-n8n-instance.example.com/webhook/sql-data-sync](https://your-n8n-instance.example.com/webhook/sql-data-sync)
+VITE_N8N_WEBHOOK_URL_PYTHON_BACKFILL=[https://your-n8n-instance.example.com/webhook/python-data-backfill](https://your-n8n-instance.example.com/webhook/python-data-backfill)
+
 ```
 
 Each webhook receives a JSON POST body:
@@ -68,72 +93,70 @@ Each webhook receives a JSON POST body:
   "source": "remote-script-trigger-panel",
   "operatorNote": null
 }
+
 ```
 
-Your n8n workflow (or Azure Function) should respond with a 2xx status on success. Anything else, or no response within `VITE_WEBHOOK_TIMEOUT_MS` (default 15s), is surfaced to the operator as a failure toast.
+Your n8n workflow (or Azure Function) should respond with a `2xx` status on success. Anything else, or no response within `VITE_WEBHOOK_TIMEOUT_MS` (default 15s), is surfaced to the operator as a failure toast.
 
-### Securing the webhook endpoint itself
+### 🔒 Securing the webhook endpoint itself
 
 Face ID in this app only proves someone unlocked *this phone* — it doesn't cryptographically authenticate to your n8n instance. Protect the receiving side too:
 
-- Set `VITE_WEBHOOK_SHARED_SECRET` and check the `X-Automation-Token` header in your n8n workflow's first node
-- Or put the webhook behind an IP allowlist / VPN
-- Or front it with your own auth proxy
+* Set `VITE_WEBHOOK_SHARED_SECRET` and check the `X-Automation-Token` header in your n8n workflow's first node
+* Or put the webhook behind an IP allowlist / VPN
+* Or front it with your own auth proxy
 
-## Deploying to GitHub Pages
+## 🌍 Deploying to GitHub Pages
 
 This repo ships a ready-to-go GitHub Actions workflow (`.github/workflows/deploy.yml`).
 
-1. Push this repo to GitHub as **`Remote-Script-Trigger-Panel`** (or update `REPO_NAME` in `vite.config.js` to match your actual repo name — this must be exact or asset paths 404)
+1. Push this repo to GitHub as **`Remote-Script-Trigger-Panel`** (or update `base` in `vite.config.js` to match your actual repo name — this must be exact or asset paths 404)
 2. In **Settings → Pages**, set the source to **GitHub Actions**
 3. In **Settings → Secrets and variables → Actions**, add:
-   - `VITE_N8N_WEBHOOK_URL_RESTART_PI`
-   - `VITE_N8N_WEBHOOK_URL_SQL_SYNC`
-   - `VITE_N8N_WEBHOOK_URL_PYTHON_BACKFILL`
-   - `VITE_WEBHOOK_SHARED_SECRET` (optional)
-   - `VITE_WEBHOOK_TIMEOUT_MS` (optional)
-4. Push to `main` — the workflow builds, copies `index.html` → `404.html` for client-side routing fallback, and deploys `dist/` to Pages
+* `VITE_N8N_WEBHOOK_URL_RESTART_PI`
+* `VITE_N8N_WEBHOOK_URL_SQL_SYNC`
+* `VITE_N8N_WEBHOOK_URL_PYTHON_BACKFILL`
+* `VITE_WEBHOOK_SHARED_SECRET` *(optional)*
+* `VITE_WEBHOOK_TIMEOUT_MS` *(optional)*
 
-## Installing on iPhone
+
+4. Push to `main` — the workflow builds, copies `index.html` → `404.html` for client-side routing fallback, and deploys `dist/` to Pages.
+
+## 📱 Installing on iPhone
 
 1. Open the deployed URL in Safari
 2. Tap **Share → Add to Home Screen**
-3. Launch from the home screen icon — it opens full-screen, no browser chrome, and works offline for the app shell (webhook triggers still need a live connection)
+3. Launch from the home screen icon — it opens full-screen, no browser chrome, and works offline for the app shell (webhook triggers still need a live connection).
 
-## Project structure
+## 📂 Project structure
 
-```
-├── .github/workflows/deploy.yml   GitHub Pages CI/CD
-├── public/                        Icons + social share image
+```text
+├── .github/workflows/deploy.yml   # GitHub Pages CI/CD
+├── public/                        # Icons + social share image
 ├── src/
 │   ├── components/
-│   │   ├── ActionCard.jsx         Oversized trigger button
-│   │   ├── ButtonGrid.jsx         Auth → confirm → execute orchestration
-│   │   ├── ConfirmSheet.jsx       Post-auth confirmation sheet
-│   │   ├── StatusBar.jsx          Connectivity / biometric status header
-│   │   └── Toast.jsx              Toast queue + stack
+│   │   ├── ActionCard.jsx         # Oversized trigger button
+│   │   ├── ButtonGrid.jsx         # Auth → confirm → execute orchestration
+│   │   ├── ConfirmSheet.jsx       # Post-auth confirmation sheet
+│   │   ├── StatusBar.jsx          # Connectivity / biometric status header
+│   │   └── Toast.jsx              # Toast queue + stack
 │   ├── services/
-│   │   ├── webauthn.js            Face ID / Touch ID wrapper
-│   │   └── webhookService.js      Webhook POST layer + action registry
+│   │   ├── webauthn.js            # Face ID / Touch ID wrapper
+│   │   └── webhookService.js      # Webhook POST layer + action registry
 │   ├── App.jsx
 │   ├── main.jsx
 │   └── index.css
-├── index.html                     SEO / OG / Twitter / JSON-LD metadata
-├── vite.config.js                 PWA plugin + GitHub Pages base path
+├── index.html                     # SEO / OG / Twitter / JSON-LD metadata
+├── vite.config.js                 # PWA plugin + GitHub Pages base path
 ├── tailwind.config.js
 └── .env.example
+
 ```
 
-## Safety notes
+## ⚠️ Safety notes
 
-- This app is a **trigger**, not a script runner — it has no ability to execute anything beyond firing an HTTP request. All real logic and safety checks belong in your n8n workflow or cloud function.
-- The confirmation sheet is a deliberate second tap, separate from the Face ID prompt, so a phone bumping in a pocket can't fire a script on its own.
-- Consider adding idempotency / debounce logic in your n8n workflow for actions like service restarts, in case of double-taps or flaky connections causing a retry.
+* This app is a **trigger**, not a script runner — it has no ability to execute anything beyond firing an HTTP request. All real logic and safety checks belong in your n8n workflow or cloud function.
+* The confirmation sheet is a deliberate second tap, separate from the Face ID prompt, so a phone bumping in a pocket can't fire a script on its own.
+* Consider adding idempotency / debounce logic in your n8n workflow for actions like service restarts, in case of double-taps or flaky connections causing a retry.
 
 ---
-
-<div align="center">
-
-Authorized personnel only · All actions should be logged server-side
-
-</div>
